@@ -6,21 +6,36 @@
  * Time: 22:18
  */
 
-function myImplode2($del, $arr)
-{
-    $res = null;
-    $i = 0;
-    foreach ($arr as $value) {
-//        $res = $res . $value;
-        if (isset($arr[$i + 1])) {
-            $res .= $value.$del;
-        } else {
-            $res .= $value;
-        }
 
+function myExplode($del, $tags)
+{
+    $w = null;
+    $i = 0;
+    while (isset($tags{$i})) {
+
+        if ($tags{$i} != $del) {
+            $w .= $tags{$i};
+        }
+        elseif($tags{$i} == $del){
+            $res=$w."1 ";
+        }
+//        else {
+//
+//
+//        }
+        $res = $w;
         $i++;
+
     }
 
-    return $res;
+    print_r($res);
 }
-echo myImplode2(",",['a'=>'w','b'=>'o','c'=>'r','d'=>'l','e'=>'d']);
+
+$str = "               test function explode            ";
+$res1 = explode(" ", $str);
+print_r($res1);
+echo "<br>";
+myExplode(" ", $str);
+
+
+

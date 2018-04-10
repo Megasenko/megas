@@ -136,8 +136,8 @@ function myTrim($tags)
     var_dump($w);
 }
 
-$p='     qwerty     ';
-var_dump($p);
+$p='     qwerty  qwerty   ';
+var_dump (trim($p));
 echo "<br>";
 myTrim($p);
 
@@ -202,6 +202,31 @@ function myImplode2($del, $arr)
 
 echo myImplode2(",",['a'=>'w','b'=>'o','c'=>'r','d'=>'l','e'=>'d']);
 echo "<br><br>";
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function myExplode($delimiter, $tags)
+{
+    $w = null;
+    $i = 0;
+    while (isset($tags{$i})) {
+        if ($tags{$i} != $delimiter) {
+            $w .= $tags{$i};
+        } else {
+            $res[] = $w;
+            unset ($w);
+        }
+        $i++;
+    }
+    $res[] = $w;
+    print_r($res);
+}
+
+$str = "test function explode";
+$res1 = explode(" ", $str);
+print_r($res1);
+echo "<br>";
+myExplode(" ", $str);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
