@@ -6,36 +6,27 @@
  * Time: 22:18
  */
 
-
-function myExplode($del, $tags)
+function myExplode($delimiter, $string)
 {
     $w = null;
     $i = 0;
-    while (isset($tags{$i})) {
-
-        if ($tags{$i} != $del) {
-            $w .= $tags{$i};
+    while (isset($string{$i})) {
+        if ($string{$i} != $delimiter) {
+            $w .= $string{$i};
+        } elseif ($string{$i} === $delimiter) {
+            $res[] = $w;
+            $w=null;
         }
-        elseif($tags{$i} == $del){
-            $res=$w."1 ";
-        }
-//        else {
-//
-//
-//        }
-        $res = $w;
         $i++;
-
     }
-
+    $res[] = $w;
     print_r($res);
 }
 
-$str = "               test function explode            ";
+$str = "test - function, explode";
+echo $str;
+echo "<br>";
 $res1 = explode(" ", $str);
 print_r($res1);
 echo "<br>";
 myExplode(" ", $str);
-
-
-

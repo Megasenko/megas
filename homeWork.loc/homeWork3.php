@@ -1,7 +1,8 @@
 <?php
 
 // Работает только с англ словами , русские в масив вносяться как два символа.
-
+echo "_____<b>STRLEN</b>______:";
+echo "<br>";
 function myStrlen($a)
 {
     if (empty($a)) {
@@ -58,7 +59,7 @@ function myStrlen3($a)
 
 myStrlen3('qwerty');
 
-echo "<br><br>";
+echo "<br>";
 
 
 function myStrlen4($a)
@@ -75,6 +76,9 @@ echo myStrlen4('qwerty');
 echo "<br><br>";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+echo "_____<b>EMPTY</b>______:";
+echo "<br>";
 
 function myEmpty($x)
 {
@@ -112,6 +116,9 @@ echo "<br><br>";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+echo "_____<b>TRIM</b>______:";
+echo "<br>";
+
 function myTrim($tags)
 {
     $qq = ' ';
@@ -136,8 +143,8 @@ function myTrim($tags)
     var_dump($w);
 }
 
-$p='     qwerty  qwerty   ';
-var_dump (trim($p));
+$p = '     qwerty  qwerty   ';
+var_dump(trim($p));
 echo "<br>";
 myTrim($p);
 
@@ -147,6 +154,8 @@ echo "<br><br>";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+echo "_____<b>INTVAL</b>______:";
+echo "<br>";
 
 function myIntval($x)
 {
@@ -169,6 +178,10 @@ echo "<br><br>";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+echo "_____<b>IMPLODE</b>______:";
+echo "<br>";
+
+
 function myImplode($arr)
 {
     $res = null;
@@ -179,7 +192,7 @@ function myImplode($arr)
     return $res;
 }
 
-echo myImplode(['a'=>'w','b'=>'o','c'=>'r','d'=>'l','e'=>'d']);
+echo myImplode(['a' => 'w', 'b' => 'o', 'c' => 'r', 'd' => 'l', 'e' => 'd']);
 echo "<br>";
 
 function myImplode2($del, $arr)
@@ -200,21 +213,25 @@ function myImplode2($del, $arr)
     return $res;
 }
 
-echo myImplode2(",",['a'=>'w','b'=>'o','c'=>'r','d'=>'l','e'=>'d']);
+echo myImplode2(",", ['a' => 'w', 'b' => 'o', 'c' => 'r', 'd' => 'l', 'e' => 'd']);
 echo "<br><br>";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function myExplode($delimiter, $tags)
+echo "_____<b>EXPLODE</b>______:";
+echo "<br>";
+
+
+function myExplode($delimiter, $string)
 {
     $w = null;
     $i = 0;
-    while (isset($tags{$i})) {
-        if ($tags{$i} != $delimiter) {
-            $w .= $tags{$i};
-        } else {
+    while (isset($string{$i})) {
+        if ($string{$i} != $delimiter) {
+            $w .= $string{$i};
+        } elseif ($string{$i} === $delimiter) {
             $res[] = $w;
-            unset ($w);
+            $w = null;
         }
         $i++;
     }
@@ -222,36 +239,89 @@ function myExplode($delimiter, $tags)
     print_r($res);
 }
 
-$str = "test function explode";
+$str = "test - function, explode";
+echo $str;
+echo "<br>";
 $res1 = explode(" ", $str);
 print_r($res1);
 echo "<br>";
 myExplode(" ", $str);
-
-
+echo "<br><br>";
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Для обычных массивов
+echo "_____<b>ARRAY MERGE</b>______:";
+echo "<br>";
+
+// Для обычных массивов с цифрами
 function myArrayMerge($arr1, $arr2)
 {
     $arr3 = $arr1;
     for ($i = 0; $i < count($arr2); $i++) {
         $arr3[] = $arr2[$i];
     }
-    var_dump($arr3);
+    print_r($arr3);
 }
 
 $arr1 = [1, 2, 3, 4, 5];
-$arr2 = [6, 7, 8, 9, 10];
+$arr2 = [6, 7, 8, 4, 1, 9, 10];
+
 
 $result = array_merge($arr1, $arr2);
-var_dump($result);
+echo "<pre>";
+print_r($result);
 echo "<br>";
 myArrayMerge($arr1, $arr2);
 
 echo "<br><br>";
 
+function myArrayMerge2($arr1, $arr2)
+{
+    foreach ($arr1 as $key => $value) {
+        $key1 = $key;
+        $val1 = $value;
+        foreach ($arr2 as $key => $value) {
+            $key2 = $key;
+            $val2 = $value;
+            if (is_string($key1) && is_string($key2)) {
+                if ($key2 == $key1) {
+                    $result1[$key1] = $val2;
+                } elseif ($key2 != $key1) {
+                    $result1[$key1] = $val1;
+                    $result1[$key2] = $val2;
+                }
+            } elseif (is_numeric($key1) && is_numeric($key2)) {
+                $i = 0;
+                while (isset ($arr1[$i])) {
+                    $result1[$i] = $arr1[$i];
+                    $i++;
+                }
+            }
+        }
+    }
+    $i = 0;
+    while (isset ($arr2[$i])) {
+        $result1[] = $arr2[$i];
+        $i++;
+    }
+    return $result1;
+}
+
+
+$arr1 = ["color" => "red", 2, 4, 'www' => 'site'];
+$arr2 = ["a", "b", "color" => "green", "shape" => "trapezoid", 4];
+
+$result = array_merge($arr1, $arr2);
+echo "<pre>";
+print_r($result);
+echo "<br>";
+print_r(myArrayMerge2($arr1, $arr2));
+
+echo "<br><br>";
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+echo "_____<b>ARRAY UNIQUE</b>______:";
+echo "<br>";
 
 function myArrayUnique($a)
 {
