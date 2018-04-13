@@ -6,27 +6,44 @@
  * Time: 22:18
  */
 
-function myExplode($delimiter, $string)
+function myTrim($string)
 {
-    $w = null;
-    $i = 0;
-    while (isset($string{$i})) {
-        if ($string{$i} != $delimiter) {
-            $w .= $string{$i};
-        } elseif ($string{$i} === $delimiter) {
-            $res[] = $w;
-            $w=null;
-        }
+    $del = ' ';
+    $str=null;
+    $i=0;
+    while ($string{$i} == $del){
+           $string{$i}=null;
+            if (($string{$i+1} != $del)){
+                $ok=true;
+                break;
+            }
         $i++;
     }
-    $res[] = $w;
-    print_r($res);
+    $j=$i+1;
+    while ($ok){
+        $str.=$string{$j};
+        if(!isset($string{$j+1})){
+            $ok=false;
+        }
+        $j++;
+    }
+
+    $k=$j;
+        while ($string{$k}){
+            if ($string{$k} != $del){
+//                ljhf,jnfnm
+
+            }
+        }
+        $k--;
+    return $str;
 }
 
-$str = "test - function, explode";
-echo $str;
+$p = '     qwerty qwerty   ';
+var_dump(trim($p));
 echo "<br>";
-$res1 = explode(" ", $str);
-print_r($res1);
-echo "<br>";
-myExplode(" ", $str);
+var_dump(myTrim($p));
+
+
+
+
