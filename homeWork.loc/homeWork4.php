@@ -33,4 +33,4 @@ function myRound($float)
 
     return $result;
 }
-echo myRound($numb = 1111111111111.3);
+echo myRound($numb = 2222.34567890);
