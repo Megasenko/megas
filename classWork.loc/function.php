@@ -61,7 +61,7 @@
 
 function myArrayUnique($arr)
 {
-    foreach ($arr as $value) {
+    foreach ($arr as $key => $value) {
 
         foreach ($arr as $val) {
             if ($value == $val) {
@@ -100,24 +100,24 @@ function calc()
 }
 
 // пузырьковая сортировка
-
-function mySortirovka($array)
-{
-    $size = count($array) - 1;
-    for ($a = 0; $a < $size; $a++) {
-        $flag = 0;
-        for ($i = 0; $i < $size - $a; $i++) {
-            $elem1 = $array[$i];
-            $elem2 = $array[$i + 1];
-            if ($elem1 > $elem2) {
-                $array[$i] = $elem2;
-                $array[$i + 1] = $elem1;
-                $flag = 1;
-            }
-        }
-    }
-    if ($flag == 0) {
-        echo true;
-        break;
-    }
-}
+//
+//function mySortirovka($array)
+//{
+//    $size = count($array) - 1;
+//    for ($a = 0; $a < $size; $a++) {
+//        $flag = 0;
+//        for ($i = 0; $i < $size - $a; $i++) {
+//            $elem1 = $array[$i];
+//            $elem2 = $array[$i + 1];
+//            if ($elem1 > $elem2) {
+//                $array[$i] = $elem2;
+//                $array[$i + 1] = $elem1;
+//                $flag = 1;
+//            }
+//        }
+//    }
+//    if ($flag == 0) {
+//        echo true;
+////        break;
+//    }
+//}
